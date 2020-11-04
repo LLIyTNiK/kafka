@@ -1,0 +1,29 @@
+{
+  "name": "lliytnik/kafka",
+  "description": "package for using kafka",
+  "type": "extension",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Fynjy",
+      "email": "antony.ets@yandex.ru"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.2.0",
+    "lliytnik/eventbus": "dev-main",
+    "ext-rdkafka" : "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "lliytnik\\kafka\\": "src"
+    }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/LLIyTNiK/kafka.git"
+    }
+  ]
+}
