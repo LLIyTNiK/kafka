@@ -1,30 +1,41 @@
 <?php
 
 
-namespace lliytnik\eventbust\transports\kafka;
+namespace lliytnik\kafka;
 
 
 class Kafka
 {
     protected $_conf;
-    public $kafkaConf = [
-        'topicName'=>'test',
-        'log_level'=>LOG_ERR,
-        'groupID'=>'myGroup',
-    ];
-    public $brokers = [];
+    protected $isConfigured=false;
+
+    /*public $config = [
+        'group.id'=>'',
+        'metadata.broker.list'=>'',
+        'log_level'=> ''.LOG_ERR.'',
+    ];*/
 
     /**
      * Kafka constructor.
      * @param array $kafkaConf
      */
-    public function __construct(Array $kafkaConf)
+    public function __construct(array $kafkaConf=[],string $arrayItemName='')
     {
-        $this->_conf = new \RdKafka\Conf();
-        $confArray = array_merge($this->kafkaConf,$kafkaConf);
-        foreach ($confArray as $configName => $configValue){
-            $this->_conf->set($configName, $configValue);
-        }
-        $this->_conf->set('log_level', (string) $this->logLevel);
+        $this->_conf = ConfigFactory::getKafkaConf(ConfigFactory::KAFKA_CONFIG,$kafkaConf,$arrayItemName);
+        /*$this->_conf = new \RdKafka\Conf();
+        if(!empty($kafkaConf)) {
+            $this->setConfig($kafkaConf);
+        }*/
     }
+
+    /*public function setConfig(array $conf){
+        foreach ($conf as $configName => $configValue){
+            $this->setConfigParam($configName, $configValue);
+        }
+        $this->isConfigured = true;
+    }
+
+    public function setConfigParam(string $paramName, $paramValue){
+        $this->_conf->set($paramName,$paramValue);
+    }*/
 }
