@@ -24,15 +24,8 @@ class Consumer extends Kafka
         }
         $this->consumer = new \RdKafka\Consumer($this->_conf);
         ConfigFactory::setObjectParams($this,$conf,'consumer');
-        //$topicConfig = new \RdKafka\TopicConf();
         $topicConfig = ConfigFactory::getKafkaConf(ConfigFactory::TOPIC_CONFIG,$conf,'topicConf');
-        /*if(isset($conf['topicConf'])) {
-            foreach ($conf['topicConf'] as $confName => $confValue) {
-                $topicConfig->set($confName, $confValue);
-            }
-        }*/
         $this->topic = $this->consumer->newTopic($conf['topicName'],$topicConfig);
-        //register_shutdown_function($this->topic->consumeStop(),$this->partition);
     }
 
     public function consume(){

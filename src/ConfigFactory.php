@@ -20,9 +20,6 @@ class ConfigFactory
                 }
             }
             self::setConfigParams($conf,$config);
-            /*foreach ($config as $paramName=>$paramValue){
-                $conf->set($paramName,$paramValue);
-            }*/
         }
         return $conf;
     }
